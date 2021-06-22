@@ -17,6 +17,7 @@
           "
         >
           <v-btn
+          v-if="$store.state.user['is_staff']"
             outlined
             color="success"
             dense

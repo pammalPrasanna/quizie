@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-navigation-drawer
-      v-if="appBar"
+      v-if="!$store.state.user['is_staff']"
       v-model="$store.state.drawer"
       app
     >
@@ -11,7 +11,7 @@
       <!--  -->
       <v-app-bar-nav-icon
         color="success"
-      v-if="appBar"
+       v-if="!$store.state.user['is_staff']"
       
         @click="$store.commit('setDrawer', true)"
       ></v-app-bar-nav-icon>
@@ -75,7 +75,6 @@ export default {
 
   data: () => ({
     drawer: false,
-    appBar: false,
   }),
   components: {
     NavbarLinks,
@@ -93,9 +92,6 @@ export default {
   },
  
   methods: {
-    async applyAccess(){
-      this.appBar = (this.$store.state.isAuthenticated ? (this.$store.state.user.is_staff ? false : true) : false)
-    },
     async logout() {
       await axios
         .post("/api/v1/token/logout/")
