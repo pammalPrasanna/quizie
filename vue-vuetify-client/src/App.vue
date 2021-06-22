@@ -81,7 +81,6 @@ export default {
   },
   async beforeCreate() { 
     await this.$store.commit("initializeStore");
-    await this.applyAccess()
     if (this.$store.state.token) {
       axios.defaults.headers.common[
         "Authorization"
