@@ -1,8 +1,5 @@
 <template>
   <div>
-    <v-btn @click="$router.go(-1)"  icon small color="success">
-      <v-icon dark> mdi-arrow-left</v-icon>
-    </v-btn>
     <div class="row">
       <div :class="$vuetify.breakpoint.xs ? '' : 'col-2'"></div>
       <div
@@ -10,10 +7,13 @@
           $vuetify.breakpoint.xs ? 'col-12 text-center' : 'col-8 text-center'
         "
       >
-        <div class="row">
+        <div class="row pb-4">
           <div class="col-6 text-left justify-center">
-            <div class="success--text title font-weight-regular pa-4">
-              Edit quiz
+            <div class="success--text title font-weight-regular">
+               <v-btn @click="$router.go(-1)"  icon small color="success">
+      <v-icon dark> mdi-arrow-left</v-icon>
+    </v-btn>
+             <span> Edit quiz</span>
             </div>
           </div>
           <div class="col-6 text-right my-auto">

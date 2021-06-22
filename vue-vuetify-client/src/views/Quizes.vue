@@ -46,7 +46,7 @@
         type="text"
         outlined
         color="success"
-        dense
+        :dense="$vuetify.breakpoint.xs"
       />
     </div>
 
@@ -79,8 +79,7 @@
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <template>
-                <template v-if="$store.state.user.is_staff">
+                <div v-if="$store.state.user['is_staff']">
                   <QuizCardButton
                     :btype="{
                       label: 'View',
@@ -94,16 +93,15 @@
                   />
                   <QuizCardButton :btype="{ label: 'Edit', link:{name: 'edit-quiz', params:{id: quiz.id}} }" />
                   <QuizCardButton :btype="{ label: 'Results', link: {name: 'quiz-results', params:{id: quiz.id}}}" />
-                </template>
-                <template v-else>
+                </div>
+                <div v-if="!$store.state.user['is_staff']">
                   <QuizCardButton
                     :btype="{
                       label: 'Take quiz',
                       link: { name: 'take-quiz', params: { id: quiz.id } },
                     }"
                   />
-                </template>
-              </template>
+                </div>
             </v-card-actions>
           </v-card>
         </div>

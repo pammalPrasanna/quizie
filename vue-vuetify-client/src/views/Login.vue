@@ -2,7 +2,10 @@
   <v-container class="fill-height" fluid>
     <v-row align="center" justify="center">
       <v-col cols="12" sm="6" md="5">
-        <div class="text-center success--text display-1 pt-3">Log in</div>
+        <div  :class="
+              !$vuetify.breakpoint.xs
+                ? 'text-h5 font-weight-regular text-center pt-3'
+                : 'text-h6 text-center pt-3'">Log in</div>
         <v-form @submit.prevent="submitForm" class="pt-3">
           <v-text-field
             v-model="username"
@@ -11,6 +14,7 @@
             color="success"
             required
             outlined
+            :dense="$vuetify.breakpoint.xs"
           ></v-text-field>
           <v-text-field
             v-model="password"
@@ -21,6 +25,7 @@
             color="success"
             outlined
             required
+            :dense="$vuetify.breakpoint.xs"
             :disabled="username.length === 0"
             @click:append="showPass = !showPass"
           ></v-text-field>
@@ -62,6 +67,32 @@ export default {
   }),
 
   methods: {
+    async getUser() {
+          await axios
+            .get("/api/v1/users/me")
+            .then((response) => {
+              this.$store.commit("setUser", {
+                id: response.data.id,
+                username: response.data.username,
+              });
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        await  this.getUserAccess()
+    },
+    async getUserAccess() {
+       const user = this.$store.state.user;
+          await axios
+            .get(`/api/v1/user/${user.id}/`)
+            .then((response) => {
+              this.$store.commit("setUserAccess", response.data.is_staff);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        
+    },
     async submitForm() {
       this.$store.commit("setIsLoading", true);
       this.errors = [];
@@ -80,7 +111,8 @@ export default {
 
           localStorage.setItem("token", token);
 
-          this.$router.push({ name: "quizes" });
+          this.getUser()
+         
         })
         .catch((error) => {
           if (error.response) {
@@ -91,28 +123,8 @@ export default {
             this.errors.push(error.message);
           }
         });
-      await axios
-        .get("/api/v1/users/me")
-        .then((response) => {
-          this.$store.commit("setUser", {
-            id: response.data.id,
-            username: response.data.username,
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
 
-      const user = this.$store.state.user
-      await axios
-        .get(`/api/v1/user/${user.id}/`)
-        .then((response) => {
-          this.$store.commit("setUserAccess", response.data.is_staff);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-
+      this.$router.push({ name: "quizes" });
       this.$store.commit("setIsLoading", false);
     },
   },

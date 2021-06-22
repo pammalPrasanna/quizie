@@ -1,5 +1,8 @@
 <template>
   <v-card>
+        <v-btn v-if="!results.length" @click="$router.go(-1)" icon small color="success">
+          <v-icon dark> mdi-arrow-left</v-icon>
+        </v-btn>
     <v-card-title>
       <span v-if="results.length">
         <v-btn @click="$router.go(-1)" icon small color="success">

@@ -1,7 +1,14 @@
 <template>
   <div>
-    <div class="row">
-        <div class="col-6 text-left justify-center"><div class="success--text title font-weight-regular pa-4">Edit question</div></div>
+    <div class="row pt-2">
+        <div class="col-6 text-left justify-center">
+          <span class="success--text title font-weight-regular my-auto">
+              <v-btn @click="$router.go(-1)"  icon small color="success">
+      <v-icon dark> mdi-arrow-left</v-icon>
+    </v-btn>
+          
+          
+            Edit question</span></div>
         <div class="col-6 text-right my-auto"><v-btn @click="deleteQuestion()" small outlined color="red lighten-1">Delete</v-btn></div>
     </div>
     <v-form @submit.prevent="submitForm" class="pt-3">
@@ -235,12 +242,10 @@ export default {
       this.$store.commit("setIsLoading", true);
       if (await this.validate()) {
           if(await this.prepareData()){
-              console.log(JSON.stringify(this.formData))
             await axios
                 .patch('/api/v1/question/', this.formData)
                 .then(response => {
-                    console.log(response.data)
-                    this.$router.push({name: 'view-quiz', params: {id: this.quiz['id']}})
+                   this.$router.go(-1)
                 })
                 .catch(error =>{
                     console.log(JSON.stringify(error))

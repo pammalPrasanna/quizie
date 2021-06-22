@@ -20,13 +20,13 @@ export default new Vuex.Store({
       state.isLoading = status
     },
 
-    initializeStore(state) {
+    async initializeStore(state) {
       if (localStorage.getItem('token')) {
         state.token = localStorage.getItem('token')
         state.isAuthenticated = true
         state.user.id = localStorage.getItem('userid')
         state.user.username = localStorage.getItem('username')
-        state.user.is_staff = localStorage.getItem('is_staff')
+        state.user.is_staff = JSON.parse(localStorage.getItem('is_staff'))
       } else {
         state.token = ''
         state.isAuthenticated = false
@@ -47,8 +47,8 @@ export default new Vuex.Store({
       localStorage.setItem('userid', user.id)
     },
     setUserAccess(state, is_staff){
-      state.user.is_staff = is_staff
-      localStorage.setItem('is_staff', is_staff)
+      state.user.is_staff = JSON.parse(is_staff)
+      localStorage.setItem('is_staff', JSON.parse(is_staff))
     },
     removeToken(state){
       state.token = ''

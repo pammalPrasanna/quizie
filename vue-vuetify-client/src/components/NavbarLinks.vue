@@ -43,10 +43,11 @@
         drawer: true,
         items: [
           { title: 'Quizes', icon: 'mdi-format-list-checks', link: {name: 'quizes'} },
-          { title: 'Results', icon: 'mdi-chart-bar', link: {name: 'user-results', params: {id: this.$store.state.user.id}} },
+          { title: 'Results', icon: 'mdi-chart-bar', 
+          link: {name: 'user-results', params: {id: `${localStorage.getItem('userid')}`}} },
         ],
-        right: null,
       }
     },
+    
   }
 </script>

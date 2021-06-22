@@ -10,13 +10,14 @@
                 : 'text-h6'
             "
           >
-            <v-btn @click="$router.go(-1)" icon color="success">
+            <v-btn @click="$router.go(-1)" class="pl-0 ml-0" icon color="success">
               <v-icon dark> mdi-arrow-left</v-icon>
             </v-btn>
 
-            {{ quiz["name"] }}</span
-          >
+            <span v-if="!$vuetify.breakpoint.xs">{{ quiz["name"] }} </span>
+          </span>
         </div>
+
         <div
           :class="
             $vuetify.breakpoint.xs ? 'col-6 text-right' : 'col-4 text-right'
@@ -33,6 +34,13 @@
           >
         </div>
       </div>
+      <span
+        :class="
+          !$vuetify.breakpoint.xs ? 'text-h5 font-weight-regular' : 'text-h6'
+        "
+        v-if="$vuetify.breakpoint.xs"
+        >{{ quiz["name"] }}
+      </span>
     </div>
     <div
       :class="
@@ -52,7 +60,7 @@
         type="text"
         outlined
         color="success"
-        dense
+        :dense="$vuetify.breakpoint.xs"
       />
     </div>
     <template v-for="(quiz, index) in searchResult">

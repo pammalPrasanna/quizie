@@ -1,7 +1,9 @@
 <template>
   <div>
-    <div class="text-center success--text title font-weight-regular">
-      Add question in {{quiz['name']}}
+    <div class="success--text title font-weight-regular">
+        <v-btn @click="$router.go(-1)" icon small color="success">     <v-icon dark> mdi-arrow-left</v-icon>
+    </v-btn>
+          Add question<div class="text-center">{{quiz['name']}}</div>
     </div>
     <v-form @submit.prevent="submitForm" class="pt-3">
       <v-textarea

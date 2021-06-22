@@ -1,15 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-navigation-drawer
-      v-if="
-        $vuetify.breakpoint.xs
-          ? $store.state.isAuthenticated
-            ? $store.state.user.is_staff
-              ? false
-              : true
-            : false
-          : false
-      "
+      v-if="appBar"
       v-model="$store.state.drawer"
       app
     >
@@ -19,15 +11,8 @@
       <!--  -->
       <v-app-bar-nav-icon
         color="success"
-        v-if="
-          $vuetify.breakpoint.xs
-            ? $store.state.isAuthenticated
-              ? $store.state.user.is_staff
-                ? false
-                : true
-              : false
-            : false
-        "
+      v-if="appBar"
+      
         @click="$store.commit('setDrawer', true)"
       ></v-app-bar-nav-icon>
 
@@ -90,12 +75,14 @@ export default {
 
   data: () => ({
     drawer: false,
+    appBar: false,
   }),
   components: {
     NavbarLinks,
   },
-  async beforeCreate() {
+  async beforeCreate() { 
     await this.$store.commit("initializeStore");
+    await this.applyAccess()
     if (this.$store.state.token) {
       axios.defaults.headers.common[
         "Authorization"
@@ -104,7 +91,11 @@ export default {
       axios.defaults.headers.common["Authorization"] = "";
     }
   },
+ 
   methods: {
+    async applyAccess(){
+      this.appBar = (this.$store.state.isAuthenticated ? (this.$store.state.user.is_staff ? false : true) : false)
+    },
     async logout() {
       await axios
         .post("/api/v1/token/logout/")
