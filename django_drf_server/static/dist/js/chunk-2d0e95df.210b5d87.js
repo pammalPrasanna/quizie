@@ -1,2 +1,2 @@
 (window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0e95df"],{"8cdb":function(t,e,n){"use strict";n.r(e);var a=function(){var t=this,e=t.$createElement,n=t._self._c||e;return n("v-container",{staticClass:"display-2 my-auto mx-auto",attrs:{justify:"center",align:"center"}},[t._v("404 "),n("div",{staticClass:"body-1"},[t._v("click "),n("router-link",{staticClass:"text-decoration-none",attrs:{to:{name:"quizes"}}},[t._v("here")]),t._v(" to go home")],1)])},s=[],o={},c=o,i=n("2877"),r=n("6544"),l=n.n(r),u=n("a523"),d=Object(i["a"])(c,a,s,!1,null,null,null);e["default"]=d.exports;l()(d,{VContainer:u["a"]})}}]);
-//# sourceMappingURL=chunk-2d0e95df.42fc39ea.js.map
+//# sourceMappingURL=chunk-2d0e95df.210b5d87.js.map
