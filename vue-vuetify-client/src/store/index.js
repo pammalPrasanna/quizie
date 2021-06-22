@@ -11,7 +11,7 @@ export default new Vuex.Store({
     user: {
       id: 0,
       username: '',
-      is_staff: true,
+      is_staff: false,
     },
     drawer: false,
   },

@@ -1,39 +1,44 @@
 <template>
-  <div class="row">
-    <div :class="$vuetify.breakpoint.xs ? '' : 'col-2'"></div>
-    <div
-      :class="
-        $vuetify.breakpoint.xs ? 'col-12 text-center' : 'col-8 text-center'
-      "
-    >
-      <div class="row">
-        <div class="col-6 text-left justify-center">
-          <div class="success--text title font-weight-regular pa-4">
-            Edit quiz
+  <div>
+    <v-btn @click="$router.go(-1)"  icon small color="success">
+      <v-icon dark> mdi-arrow-left</v-icon>
+    </v-btn>
+    <div class="row">
+      <div :class="$vuetify.breakpoint.xs ? '' : 'col-2'"></div>
+      <div
+        :class="
+          $vuetify.breakpoint.xs ? 'col-12 text-center' : 'col-8 text-center'
+        "
+      >
+        <div class="row">
+          <div class="col-6 text-left justify-center">
+            <div class="success--text title font-weight-regular pa-4">
+              Edit quiz
+            </div>
+          </div>
+          <div class="col-6 text-right my-auto">
+            <v-btn @click="deleteQuiz()" small outlined color="red lighten-1"
+              >Delete</v-btn
+            >
           </div>
         </div>
-        <div class="col-6 text-right my-auto">
-          <v-btn @click="deleteQuiz()" small outlined color="red lighten-1"
-            >Delete</v-btn
+        <v-form @submit.prevent="submitForm">
+          <v-text-field
+            v-model="quiz['name']"
+            outlined
+            label="Enter the name of the quiz"
+            color="success"
+          />
+          <v-alert border="left" color="red lighten-1" dark v-if="error.length">
+            {{ error }}
+          </v-alert>
+          <v-btn type="submit" block class="text-capitalize" color="success"
+            >Submit</v-btn
           >
-        </div>
+        </v-form>
       </div>
-      <v-form @submit.prevent="submitForm">
-        <v-text-field
-          v-model="quiz['name']"
-          outlined
-          label="Enter the name of the quiz"
-          color="success"
-        />
-        <v-alert border="left" color="red lighten-1" dark v-if="error.length">
-          {{ error }}
-        </v-alert>
-        <v-btn type="submit" block class="text-capitalize" color="success"
-          >Submit</v-btn
-        >
-      </v-form>
+      <div :class="$vuetify.breakpoint.xs ? '' : 'col-2'"></div>
     </div>
-    <div :class="$vuetify.breakpoint.xs ? '' : 'col-2'"></div>
   </div>
 </template>
 <script>

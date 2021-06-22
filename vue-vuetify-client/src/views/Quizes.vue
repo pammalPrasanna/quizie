@@ -1,14 +1,16 @@
 <template>
+
   <div v-if="quizes.length">
     <div
       :class="
         !$vuetify.breakpoint.xs
           ? 'text-h5 font-weight-regular'
-          : 'subtitle-1 font-weight-bold'
+          : 'text-h6 font-weight-bold'
       "
     >
-      <div class="row">
-        <div :class="$vuetify.breakpoint.xs ? 'col-6' : 'col-10'">Quizes</div>
+      <div class="row pt-1">
+        <div :class="$vuetify.breakpoint.xs ? 'col-6' : 'col-10'">
+          Quizes</div>
         <div
           :class="
             $vuetify.breakpoint.xs ? 'col-6 text-right' : 'col-2 text-right'

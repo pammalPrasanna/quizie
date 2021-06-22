@@ -31,8 +31,9 @@
         @click="$store.commit('setDrawer', true)"
       ></v-app-bar-nav-icon>
 
-      <v-toolbar-title class="green--text" :to="{ name: 'quizes' }"
-        >Quizie</v-toolbar-title
+      <v-toolbar-title class="green--text" 
+        ><router-link :to="{ name: 'quizes' }" class="text-decoration-none">
+            Quizie</router-link></v-toolbar-title
       >
       <v-spacer />
 
@@ -57,10 +58,9 @@
         <v-btn
           label="Login"
           v-if="!$vuetify.breakpoint.xs"
-          small
           class="text-capitalize"
           outlined
-          color="white"
+          color="green"
           :to="{ name: 'log-in' }"
           >Login
         </v-btn>
@@ -70,12 +70,12 @@
         :indeterminate="$store.state.isLoading"
         absolute
         bottom
-        color="green lighten-4"
+        color="green"
       ></v-progress-linear>
     </v-app-bar>
-
+  
     <v-main>
-      <v-container class="pt-4 px-6" fluid>
+      <v-container fluid>
         <router-view><Home /></router-view>
       </v-container>
     </v-main>

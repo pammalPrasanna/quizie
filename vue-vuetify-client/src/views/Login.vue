@@ -53,8 +53,8 @@ import axios from "axios";
 export default {
   data: () => ({
     isFormValid: true,
-    username: "teacher1",
-    password: "qt1@quizie.com",
+    username: "",
+    password: "",
     errors: [],
     showPass: false,
     nameRules: [(v) => !!v || "Username is required"],

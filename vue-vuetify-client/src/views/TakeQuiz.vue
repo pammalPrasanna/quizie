@@ -108,8 +108,6 @@
             </template>
           </v-window>
 
-          <v-divider  v-if="globalStep === 3 ? false : true"></v-divider>
-
           <v-card-actions>
             <!-- <v-btn :disabled="step === 1" text @click="step--"> Back </v-btn>
       <v-btn :disabled="(selected.length || radioSelected.length) ? false : true" text @click="clearSelected()"> Clear </v-btn> -->
@@ -148,10 +146,6 @@
         </div>
       </v-window-item>
     </v-window>
-
-    <v-divider
-      v-if="globalStep === 3 || globalStep === 1 ? true : false"
-    ></v-divider>
 
     <v-card-actions>
       <!-- <v-btn

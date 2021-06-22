@@ -9,7 +9,12 @@
                 ? 'text-h5 font-weight-regular'
                 : 'text-h6'
             "
-            >{{ quiz['name'] }}</span
+          >
+            <v-btn @click="$router.go(-1)" icon color="success">
+              <v-icon dark> mdi-arrow-left</v-icon>
+            </v-btn>
+
+            {{ quiz["name"] }}</span
           >
         </div>
         <div
@@ -75,7 +80,7 @@ export default {
   },
   data: () => ({
     quizes: [],
-    search: '',
+    search: "",
     quiz: "",
     showAnswer: true,
   }),
@@ -89,12 +94,12 @@ export default {
       return marks;
     },
     searchResult() {
-      if(this.search.length){
-        return this.quizes.filter((quiz)=>{
-          return quiz.question.includes(this.search)
-        })
-      }else return this.quizes
-    }
+      if (this.search.length) {
+        return this.quizes.filter((quiz) => {
+          return quiz.question.includes(this.search);
+        });
+      } else return this.quizes;
+    },
   },
   methods: {
     async getQuizes() {
