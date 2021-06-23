@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-navigation-drawer
-      v-if="!$store.state.user['is_staff']"
+      v-if="!$store.state.user['is_staff'] && $store.state.isAuthenticated"
       v-model="$store.state.drawer"
       app
     >
@@ -11,7 +11,7 @@
       <!--  -->
       <v-app-bar-nav-icon
         color="success"
-       v-if="!$store.state.user['is_staff']"
+       v-if="!$store.state.user['is_staff'] && $store.state.isAuthenticated"
       
         @click="$store.commit('setDrawer', true)"
       ></v-app-bar-nav-icon>
