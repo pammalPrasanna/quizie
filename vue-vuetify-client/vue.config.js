@@ -3,9 +3,9 @@ module.exports = {
     'vuetify'
   ],
 
-  publicPath: process.env.NODE_ENV === 'production' ? '/static/dist/' : 'http://localhost:8080',
+  publicPath: process.env.NODE_ENV === 'production' ? '/static/quizie/' : 'http://localhost:8080',
 
-  outputDir: '../django_drf_server/static/dist',
+  outputDir: '../django_drf_server/static/quizie',
 
   indexPath: '../../templates/base-vue.html',
 

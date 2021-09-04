@@ -18,5 +18,5 @@ urlpatterns = [
     path('api/v1/', include('quiz.urls')),
 
     # index.html
-    path('', TemplateView.as_view(template_name='index.html'))
+    path('quizie/', TemplateView.as_view(template_name='index.html'))
 ]

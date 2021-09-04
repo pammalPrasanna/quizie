@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store/index'
+import axios from 'axios'
 
 Vue.use(VueRouter)
 
@@ -106,10 +108,24 @@ const router = new VueRouter({
   routes
 })
 
+
+
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requireLogin)) {
-    if(localStorage.getItem('token')) next()
-    else next('/log-in')
+    if (localStorage.getItem('token')) {
+      axios
+        .get("/api/v1/users/me")
+        .then((response) => {
+          next();
+        })
+        .catch((error) => {
+          axios.defaults.headers.common["Authorization"] = "";
+          store.commit("removeToken");
+          next({ name: 'log-in' })
+        });
+    }else if (from.name === 'home');
+     else if (from.name === 'log-in');
+     else next({ name: 'log-in'})
   } else next()
 })
 

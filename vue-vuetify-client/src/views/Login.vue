@@ -1,5 +1,6 @@
 <template>
-  <v-container class="fill-height" fluid>
+<LoginLinks/>
+  <!-- <v-container class="fill-height" fluid>
     <v-row align="center" justify="center">
       <v-col cols="12" sm="6" md="5">
         <div  :class="
@@ -50,83 +51,87 @@
         </v-form>
       </v-col>
     </v-row>
-  </v-container>
+  </v-container> -->
 </template>
 
 <script>
-import axios from "axios";
+import LoginLinks from '../components/LoginLinks.vue'
+
 export default {
   data: () => ({
-    isFormValid: true,
-    username: "",
-    password: "",
-    errors: [],
-    showPass: false,
-    nameRules: [(v) => !!v || "Username is required"],
-    passwordRules: [(v) => !!v || "Password is required"],
+    // isFormValid: true,
+    // username: "",
+    // password: "",
+    // errors: [],
+    // showPass: false,
+    // nameRules: [(v) => !!v || "Username is required"],
+    // passwordRules: [(v) => !!v || "Password is required"],
   }),
+  components: {
+    LoginLinks: LoginLinks,
+  },
 
   methods: {
-    async getUser() {
-          await axios
-            .get("/api/v1/users/me")
-            .then((response) => {
-              this.$store.commit("setUser", {
-                id: response.data.id,
-                username: response.data.username,
-              });
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        await  this.getUserAccess()
-    },
-    async getUserAccess() {
-       const user = this.$store.state.user;
-          await axios
-            .get(`/api/v1/user/${user.id}/`)
-            .then((response) => {
-              this.$store.commit("setUserAccess", response.data.is_staff);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
+  //   async getUser() {
+  //         await axios
+  //           .get("/api/v1/users/me")
+  //           .then((response) => {
+  //             this.$store.commit("setUser", {
+  //               id: response.data.id,
+  //               username: response.data.username,
+  //             });
+  //           })
+  //           .catch((error) => {
+  //             console.log(error);
+  //           });
+  //       await  this.getUserAccess()
+  //   },
+  //   async getUserAccess() {
+  //      const user = this.$store.state.user;
+  //         await axios
+  //           .get(`/api/v1/user/${user.id}/`)
+  //           .then((response) => {
+  //             this.$store.commit("setUserAccess", response.data.is_staff);
+  //           })
+  //           .catch((error) => {
+  //             console.log(error);
+  //           });
         
-    },
-    async submitForm() {
-      this.$store.commit("setIsLoading", true);
-      this.errors = [];
-      const formData = {
-        username: this.username,
-        password: this.password,
-      };
-      await axios
-        .post("/api/v1/token/login/", formData)
-        .then((response) => {
-          const token = response.data.auth_token;
+  //   },
+  //   async submitForm() {
+  //     this.$store.commit("setIsLoading", true);
+  //     this.errors = [];
+  //     const formData = {
+  //       username: this.username,
+  //       password: this.password,
+  //     };
+  //     await axios
+  //       .post("/api/v1/token/login/", formData)
+  //       .then((response) => {
+  //         const token = response.data.auth_token;
 
-          this.$store.commit("setToken", token);
+  //         this.$store.commit("setToken", token);
 
-          axios.defaults.headers.common["Authorization"] = `Token ${token}`;
+  //         axios.defaults.headers.common["Authorization"] = `Token ${token}`;
 
-          localStorage.setItem("token", token);
+  //         localStorage.setItem("token", token);
 
-          this.getUser()
+  //         this.getUser()
          
-        })
-        .catch((error) => {
-          if (error.response) {
-            for (const err in error.response.data) {
-              this.errors.push(`${err}: ${error.response.data[err]}`);
-            }
-          } else if (error.message) {
-            this.errors.push(error.message);
-          }
-        });
+  //       })
+  //       .catch((error) => {
+  //         if (error.response) {
+  //           for (const err in error.response.data) {
+  //             this.errors.push(`${err}: ${error.response.data[err]}`);
+  //           }
+  //         } else if (error.message) {
+  //           this.errors.push(error.message);
+  //         }
+  //       });
 
-      this.$router.push({ name: "quizes" });
-      this.$store.commit("setIsLoading", false);
-    },
+  //     this.$router.push({ name: "quizes" });
+  //     this.$store.commit("setIsLoading", false);
+  //   },
   },
 };
 </script>

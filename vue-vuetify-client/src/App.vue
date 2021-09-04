@@ -17,7 +17,7 @@
       ></v-app-bar-nav-icon>
 
       <v-toolbar-title class="green--text" 
-        ><router-link :to="{ name: 'quizes' }" class="text-decoration-none">
+        ><router-link :to="{ name: 'quizes' }" class="text-h5 text-decoration-none">
             Quizie</router-link></v-toolbar-title
       >
       <v-spacer />
@@ -39,7 +39,7 @@
           </v-btn>
         </template>
       </template>
-      <template v-else>
+      <!-- <template v-else>
         <v-btn
           label="Login"
           v-if="!$vuetify.breakpoint.xs"
@@ -49,7 +49,7 @@
           :to="{ name: 'log-in' }"
           >Login
         </v-btn>
-      </template>
+      </template> -->
       <v-progress-linear
         :active="$store.state.isLoading"
         :indeterminate="$store.state.isLoading"

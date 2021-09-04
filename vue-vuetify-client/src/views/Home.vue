@@ -1,6 +1,7 @@
 <template>
-  <v-container class="fill-height" fluid>
-    <v-row align="center" justify="center">
+<LoginLinks/>
+  <!-- <v-container class="fill-height" fluid> -->
+    <!-- <v-row align="center" justify="center">
       <v-col cols="12" sm="6" md="12">
         <div class="text-center success--text display-1 pt-3">
           Q for Quizie
@@ -42,16 +43,82 @@
           <v-icon>mdi-close</v-icon>
         </v-btn>
       </template>
-    </v-snackbar>
-  </v-container>
+    </v-snackbar> -->
+  <!-- </v-container> -->
 </template>
 
 <script>
+import LoginLinks from '../components/LoginLinks.vue'
 export default {
   data: () => ({
     snackbar: false,
     text: "Contact your administrator.",
     timeout: 3000,
   }),
+  components: {
+    LoginLinks: LoginLinks,
+  },
+    methods: {
+    async getUser() {
+          await axios
+            .get("/api/v1/users/me")
+            .then((response) => {
+              this.$store.commit("setUser", {
+                id: response.data.id,
+                username: response.data.username,
+              });
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        await  this.getUserAccess()
+    },
+    async getUserAccess() {
+       const user = this.$store.state.user;
+          await axios
+            .get(`/api/v1/user/${user.id}/`)
+            .then((response) => {
+              this.$store.commit("setUserAccess", response.data.is_staff);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        
+    },
+    async submitForm(user) {
+      this.$store.commit("setIsLoading", true);
+      this.errors = [];
+      const formData = {
+        username: user === 'T' ? 'asdf' : '',
+        password: user === 'T' ? 'asdf' : '',
+      };
+      await axios
+        .post("/api/v1/token/login/", formData)
+        .then((response) => {
+          const token = response.data.auth_token;
+
+          this.$store.commit("setToken", token);
+
+          axios.defaults.headers.common["Authorization"] = `Token ${token}`;
+
+          localStorage.setItem("token", token);
+
+          this.getUser()
+         
+        })
+        .catch((error) => {
+          if (error.response) {
+            for (const err in error.response.data) {
+              this.errors.push(`${err}: ${error.response.data[err]}`);
+            }
+          } else if (error.message) {
+            this.errors.push(error.message);
+          }
+        });
+
+      this.$router.push({ name: "quizes" });
+      this.$store.commit("setIsLoading", false);
+    },
+  },
 };
 </script>
