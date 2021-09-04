@@ -19,13 +19,13 @@ It is a quiz application
 | ----------- | :----------: | ------: |
 | Create Quiz | `diff + yes` |
 
-|Edit Quiz
-|Delete Quiz
-|Add questions to quiz
-|Edit questions in quiz
-|Delete questions in quiz
-|View results of all attempts in a quiz
-|Attempt a quiz
+|Edit Quiz||
+|Delete Quiz||
+|Add questions to quiz||
+|Edit questions in quiz||
+|Delete questions in quiz||
+|View results of all attempts in a quiz||
+|Attempt a quiz||
 |View the result of attended quiz|`diff - no`|
 
 | col 3 is | right-aligned | $1600 |
