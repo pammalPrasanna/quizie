@@ -1,6 +1,6 @@
-# quizie
+# Quizie
 
-It is a quiz application
+It is a quiz application.
 
 ## User story
 
@@ -15,19 +15,14 @@ It is a quiz application
 
 ## Users and their Functionalities
 
-|             |   Teacher    | Student |
-| ----------- | :----------: | ------: |
-| Create Quiz | `diff + yes` |
-
-|Edit Quiz||
-|Delete Quiz||
-|Add questions to quiz||
-|Edit questions in quiz||
-|Delete questions in quiz||
-|View results of all attempts in a quiz||
-|Attempt a quiz||
-|View the result of attended quiz|`diff - no`|
-
-| col 3 is | right-aligned | $1600 |
-| col 2 is | centered | $12 |
-| zebra stripes | are neat | $1 |
+| Functionalities                        | Teacher | Student |
+| -------------------------------------- | :-----: | ------: |
+| Create Quiz                            |   Yes   |      No |
+| Edit Quiz                              |   Yes   |      No |
+| Delete Quiz                            |   Yes   |      No |
+| Add questions to quiz                  |   Yes   |      No |
+| Edit questions in quiz                 |   Yes   |      No |
+| Delete questions in quiz               |   Yes   |      No |
+| View results of all attempts in a quiz |   Yes   |      No |
+| Attempt a quiz                         |   No    |     Yes |
+| View the result of attended quiz       |   No    |     Yes |
