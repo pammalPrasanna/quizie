@@ -15,14 +15,19 @@ It is a quiz application.
 
 ## Users and their Functionalities
 
-| Functionalities                        | Teacher | Student |
-| -------------------------------------- | :-----: | ------: |
-| Create Quiz                            |   Yes   |      No |
-| Edit Quiz                              |   Yes   |      No |
-| Delete Quiz                            |   Yes   |      No |
-| Add questions to quiz                  |   Yes   |      No |
-| Edit questions in quiz                 |   Yes   |      No |
-| Delete questions in quiz               |   Yes   |      No |
-| View results of all attempts in a quiz |   Yes   |      No |
-| Attempt a quiz                         |   No    |     Yes |
-| View the result of attended quiz       |   No    |     Yes |
+| Functionalities                                    | Teacher | Student |
+| -------------------------------------------------- | :-----: | ------: |
+| Create Quiz                                        |   Yes   |      No |
+| Edit Quiz                                          |   Yes   |      No |
+| Delete Quiz                                        |   Yes   |      No |
+| Add questions to quiz                              |   Yes   |      No |
+| Edit questions in quiz                             |   Yes   |      No |
+| Delete questions in quiz                           |   Yes   |      No |
+| View results of all attempts by students in a quiz |   Yes   |      No |
+| Attempt a quiz                                     |   No    |     Yes |
+| View the results of attended quiz                  |   No    |     Yes |
+
+## Technologies used
+
+- Django (Django Rest framework)
+- Vue.js (Vuetify.js)
